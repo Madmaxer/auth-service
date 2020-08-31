@@ -18,13 +18,6 @@ class HealthCheckController extends Controller implements HealthCheckControllerC
      */
     public function health(): JsonResponse
     {
-        try {
-            DB::connection()->getPdo();
-        } catch (Exception $e) {
-            Log::error("Could not connect to database: $e");
-            throw $e;
-        }
-
         return new JsonResponse();
     }
 

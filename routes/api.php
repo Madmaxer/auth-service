@@ -19,6 +19,6 @@ $prefix = config('app.route_prefix') . '/v1';
 Route::group(
     ['prefix' => $prefix],
     function (): void {
-        Route::get('/', 'v1\AuthController@index');
+        Route::post('/auth', 'v1\AuthController@index');
     }
 );

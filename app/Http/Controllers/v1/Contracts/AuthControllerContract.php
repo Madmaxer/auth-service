@@ -13,13 +13,32 @@ use Illuminate\Http\JsonResponse;
 interface AuthControllerContract
 {
     /**
-     * @OA\Get(
-     *     path="/api/v1",
+     * @OA\Post(
+     *     path="/api/v1/auth",
      *     tags={"auth"},
      *     summary="JWT access token",
      *     description="Returns jwt token",
      *     operationId="auth",
+     *     @OA\Parameter(
+     *         name="Accept",
+     *         in="header",
+     *         required=true,
+     *         example="application/json",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="Content-Type",
+     *         in="header",
+     *         required=true,
+     *         example="application/json",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\Response(response=200, description="Returns JWT token"),
+     *     requestBody={"$ref": "#/components/requestBodies/Authenticate"}
      * )
      * @param AuthRequest $request
      * @return JsonResponse

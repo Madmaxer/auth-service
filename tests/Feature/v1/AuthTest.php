@@ -6,10 +6,37 @@ use Test\TestCase;
 
 class AuthTest extends TestCase
 {
-    public function testHealth(): void
+    public function testAuthValid(): void
     {
-        $response = $this->post('/api/v1/auth', ['email' => 'test@test.pl', 'password' => 'test']);
+        $response = $this->json(
+            'POST',
+            '/api/v1/auth',
+            ['email' => 'test@test.pl', 'password' => 'test'],
+            $this->getHeaders()
+        );
         $response->assertStatus(200);
-        $this->assertSame($response->getContent(), \json_encode(['example']));
+        $this->assertObjectHasAttribute('token', \json_decode($response->getContent()));
+    }
+
+    public function testAuthInvalid(): void
+    {
+        $response = $this->json(
+            'POST',
+            '/api/v1/auth',
+            ['email' => 'test@test.pl', 'password' => 'test1'],
+            $this->getHeaders()
+        );
+        $response->assertStatus(403);
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ];
     }
 }

@@ -14,21 +14,20 @@ class AuthController implements AuthControllerContract
     {
         $requestData = $request->validated();
 
-        if ($requestData['password'] === 'test' && $requestData['email'] === 'test@test.pl') {
+        if ($requestData['password'] !== 'test' || $requestData['email'] !== 'test@test.pl') {
             return response()->json('Authorization failed', 403);
         }
 
-        $this->info('Generating a JWT token...');
         $generator = new Generator(config('jwt.private_key'));
 
         $payload = [
             'v1' => [
-                Version1::USER_ID => 1,
+                Version1::USER_ID => '1',
                 Version1::EMAIL => 'test@test.pl',
                 Version1::AFFILIATE => 'test',
             ],
         ];
 
-        return response()->json(['token' => $generator->generateJwt($payload)]);
+        return response()->json(['token' => $generator->generateJwt($payload, 12000)]);
     }
 }

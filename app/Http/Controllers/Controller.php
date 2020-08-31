@@ -9,16 +9,10 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *     description="HCM Swagger Documentation",
+ *     description="Auth Swagger Documentation",
  *     version="0.0.1",
- *     title="hcm-service"
+ *     title="auth-service"
  * )
- *
- * @OAS\SecurityScheme(
- *      securityScheme="bearerAuth",
- *      type="http",
- *      scheme="bearer"
- *  )
  *
  * @OA\Schema(
  *     schema="ValidationErrors",
@@ -41,68 +35,6 @@ use Illuminate\Routing\Controller as BaseController;
  *         ),
  * )
  *
- * @OA\Schema(
- *     schema="Links",
- *         @OA\Property(
- *             property="first",
- *             type="string",
- *             example="http://hcm.localhost/v1/?page=1",
- *         ),
- *         @OA\Property(
- *             property="last",
- *             type="string",
- *             example="http://hcm.localhost/v1/?page=10",
- *         ),
- *         @OA\Property(
- *             property="prev",
- *             type="string",
- *             example="null",
- *         ),
- *         @OA\Property(
- *             property="next",
- *             type="string",
- *             example="http://hcm.localhost/v1/?page=2",
- *         ),
- * )
- *
- * @OA\Schema(
- *     schema="Meta",
- *         @OA\Property(
- *             property="current_page",
- *             type="int",
- *             example="1",
- *         ),
- *         @OA\Property(
- *             property="from",
- *             type="int",
- *             example="1",
- *         ),
- *         @OA\Property(
- *             property="last_page",
- *             type="int",
- *             example="1",
- *         ),
- *         @OA\Property(
- *             property="path",
- *             type="string",
- *             example="http://hcm.localhost/v1/",
- *         ),
- *         @OA\Property(
- *             property="per_page",
- *             type="int",
- *             example="10",
- *         ),
- *         @OA\Property(
- *             property="to",
- *             type="int",
- *             example="2",
- *         ),
- *         @OA\Property(
- *             property="total",
- *             type="int",
- *             example="2",
- *         ),
- * )
  */
 class Controller extends BaseController
 {
